@@ -17,13 +17,7 @@
       align-items: center;
       padding: 28px 16px 48px;
     }
-    header, footer, .frame { width: min(1100px, 100%); }
-    .kicker {
-      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-      letter-spacing: 0.18em;
-      font-size: 12px;
-      color: #8d8a82;
-    }
+    header, .frame { width: min(1100px, 100%); }
     h1 {
       font-size: clamp(42px, 7vw, 84px);
       line-height: 0.9;
@@ -33,31 +27,17 @@
     }
     h1 span { color: #ff2a1a; }
     .sub { color: #8d8a82; margin: 12px 0 0; font-size: 16px; }
-    .frame {
-      margin-top: 22px;
-      background: #000;
-      border: 1px solid #2c2c28;
-    }
+    .frame { margin-top: 22px; background: #000; border: 1px solid #2c2c28; }
     video { width: 100%; height: auto; display: block; background: #000; }
-    footer {
-      margin-top: 14px;
-      color: #8d8a82;
-      font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-    }
-    a { color: #f3efe6; }
   </style>
 </head>
 <body>
   <header>
-    <div class="kicker">KINETIC RESUME</div>
     <h1>GROK <span>4.7</span></h1>
-    <p class="sub">One minute. Press play. The track is part of it.</p>
+    <p class="sub">Twenty seconds. No music. Hit play.</p>
   </header>
   <div class="frame">
-    <video controls playsinline preload="metadata" src="video/grok-4.7-resume.mp4"></video>
+    <video controls playsinline preload="metadata" src="video/grok-4.7-cut.mp4"></video>
   </div>
-  <footer>SPACEXAI · 1920×1080 · 60s</footer>
 </body>
 </html>

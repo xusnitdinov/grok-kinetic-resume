@@ -1,9 +1,9 @@
 # Grok 4.7, kinetic resume
 
-One minute, 1920x1080. Kinetic type and a click track. The facts are from the Grok 4.7 announcement (21 Sep 2026).
+Twenty seconds. No music. Huge type, hard cuts.
 
-Watch it (opens a player):
+Watch it:
 
-https://cdn.jsdelivr.net/gh/xusnitdinov/grok-kinetic-resume@main/video/grok-4.7-resume.mp4
+https://cdn.jsdelivr.net/gh/xusnitdinov/grok-kinetic-resume@main/video/grok-4.7-cut.mp4
 
-The same file lives at [video/grok-4.7-resume.mp4](video/grok-4.7-resume.mp4). GitHub will not preview a file this size on the file page, so use the link above.
+Facts are from the Grok 4.7 announcement (21 Sep 2026). The big bench number locks on 38. The line under it keeps the real scores: 20.3 on 4.6, 37.6 on 4.7.

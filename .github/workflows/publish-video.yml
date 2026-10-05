@@ -1,8 +1,38 @@
 name: publish-video
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
-  note:
+  fetch:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The mp4 is already on main."
+      - uses: actions/checkout@v4
+      - name: Download the cut
+        run: |
+          mkdir -p video
+          curl -fL --retry 5 --retry-delay 2 -o video/grok-4.7-cut.mp4 "https://h.uguu.se/qZsEUwqL.mp4"
+          python3 - << 'PY'
+          import hashlib, pathlib
+          p = pathlib.Path("video/grok-4.7-cut.mp4")
+          b = p.read_bytes()
+          assert b[4:8] == b"ftyp", "not an mp4"
+          assert len(b) == 2869962, len(b)
+          digest = hashlib.sha256(b).hexdigest()
+          expect = "8873e4eba70eb5f167433eb505143ae51d30daac2d1183ae27195dcaa3f24b93"
+          assert digest == expect, digest
+          print("ok", len(b))
+          PY
+      - name: Commit the mp4
+        run: |
+          git config user.name "Xusnitdinov Azizbek"
+          git config user.email "murodovasror622@gmail.com"
+          git add video/grok-4.7-cut.mp4
+          if git diff --cached --quiet; then
+            echo "already there"
+            exit 0
+          fi
+          git commit -m "Add the fast kinetic cut."
+          git push
