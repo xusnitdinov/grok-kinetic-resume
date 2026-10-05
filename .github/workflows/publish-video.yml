@@ -1,0 +1,38 @@
+name: publish-video
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download the reel
+        run: |
+          mkdir -p video
+          curl -fL --retry 5 --retry-delay 2 -o video/grok-4.7-resume.mp4 "https://n.uguu.se/xhfKAKHj.mp4"
+          python3 - << 'PY'
+          import hashlib, pathlib
+          p = pathlib.Path("video/grok-4.7-resume.mp4")
+          b = p.read_bytes()
+          assert b[4:8] == b"ftyp", "not an mp4"
+          assert len(b) == 6660857, len(b)
+          digest = hashlib.sha256(b).hexdigest()
+          expect = "41f18452493aa3ec7d880e48678f532fcdb22c9707e90f494efde263e27b7326"
+          assert digest == expect, digest
+          print("ok", len(b))
+          PY
+      - name: Commit the mp4
+        run: |
+          git config user.name "Xusnitdinov Azizbek"
+          git config user.email "murodovasror622@gmail.com"
+          git add video/grok-4.7-resume.mp4
+          if git diff --cached --quiet; then
+            echo "already there"
+            exit 0
+          fi
+          git commit -m "Add the kinetic resume mp4."
+          git push
